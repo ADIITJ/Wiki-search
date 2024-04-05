@@ -1,7 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-# Function to search Wikipedia and extract content from the top 5 results
-# Function to search Wikipedia and extract content from the top 5 results
 def search_and_extract(query):
     url = f"https://en.wikipedia.org/w/index.php?search={query.replace(' ', '+')}&title=Special:Search&profile=advanced&fulltext=1&ns0=1"
     response = requests.get(url)
@@ -18,7 +16,6 @@ def search_and_extract(query):
             extract_content(title, query)
     else:
         print("Error in getting webpage")
-        
 
 def extract_content(title, query):
     try:
