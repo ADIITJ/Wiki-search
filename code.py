@@ -3,19 +3,15 @@ from bs4 import BeautifulSoup
 import wikipedia
 # Function to search Wikipedia and extract content from the top 5 results
 def search_and_extract(query):
-    try:
-        url = f"https://en.wikipedia.org/w/index.php?search={query.replace(' ', '_')}&ns0=1"
-        response = requests.get(url)
-        print(response.status_code)
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.text, 'html.parser')
-            links = ["https://en.wikipedia.org/"+div.a['href'] for div in soup.find_all('div', class_='mw-search-result-heading')][:3]
-            for url in links:
-                print(url)
-    except wikipedia.exceptions.DisambiguationError as e:
-        print("Ambiguous search query. Please provide more specific input.")
-    except wikipedia.exceptions.PageError as e:
-        print("No page found matching the search query.")
+
+    url = f"https://en.wikipedia.org/w/index.php?search={query.replace(' ', '_')}&ns0=1"
+    response = requests.get(url)
+    print(response.status_code)
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.text, 'html.parser')
+        links = ["https://en.wikipedia.org/"+div.a['href'] for div in soup.find_all('div', class_='mw-search-result-heading')][:3]
+        for url in links:
+            print(url)
 
 # Function to extract content from a Wikipedia page and store it in a text file
 def extract_content(url, query):
