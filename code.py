@@ -20,18 +20,18 @@ def search_and_extract(query):
         
 
 # Function to extract content from a Wikipedia page and store it in a text file
-def extract_content(url, query):
+# Function to extract content from a Wikipedia page and store it in a text file
+def extract_content(title, query):
     try:
-        response = requests.get(url)
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.text, 'html.parser')
-            content = soup.find("div", class_="mw-parser-output").text
-            with open(f"{query.replace(' ', '_')}.txt", "w", encoding="utf-8") as f:
-                f.write(content)
-            print(f"Content extracted and saved to {query.replace(' ', '_')}.txt")
-            extract_chunks(content, query)
-        else:
-            print("Error: Unable to retrieve content.")
+        page = wikipedia.page(title)
+        content = ""
+        if page.sections:
+            content = page.sections[0].content
+        with open("all_content.txt", "a", encoding="utf-8") as f:
+            f.write(content)
+            f.write("\n")
+        print(f"Content extracted and saved to all_content.txt")
+        extract_chunks(content, query)
     except Exception as e:
         print("Error:", e)
 
