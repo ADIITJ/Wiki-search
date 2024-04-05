@@ -21,14 +21,11 @@ def search_and_extract(query):
         print("Error in getting webpage")
         
 
-# Function to extract content from a Wikipedia page and store it in a text file
-# Function to extract content from a Wikipedia page and store it in a text file
 def extract_content(title, query):
     try:
-        page = wikipedia.page(title)
-        content = ""
-        if page.sections:
-            content = page.sections[0].content
+        print(title)
+        content = wikipedia.summary(title)
+        
         with open("all_content.txt", "a", encoding="utf-8") as f:
             f.write(content)
             f.write("\n")
