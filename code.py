@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-
+import wikipedia
 # Function to search Wikipedia and extract content from the top 5 results
 def search_and_extract(query):
     try:
