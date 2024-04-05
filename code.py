@@ -2,19 +2,21 @@ import requests
 from bs4 import BeautifulSoup
 import wikipedia
 # Function to search Wikipedia and extract content from the top 5 results
+# Function to search Wikipedia and extract content from the top 5 results
 def search_and_extract(query):
-
-    url = f"https://en.wikipedia.org/w/index.php?search={query.replace(' ', '+')}&title=Special%3ASearch&ns0=1"
+    url = f"https://en.wikipedia.org/w/index.php?search={query.replace(' ', '+')}&title=Special:Search&profile=advanced&fulltext=1&ns0=1"
     response = requests.get(url)
     print(response.status_code)
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, 'html.parser')
-        links = ["https://en.wikipedia.org/"+div.a['href'] for div in soup.find_all('div', class_='mw-search-result-heading')][:3]
-        for url in links:
-            print(url)
-            extract_content(url,query)
+        links = [div.a['href'] for div in soup.find_all('div', class_='mw-search-result-heading')][:3]
         if len(links)==0:
             print('No results found! Try again')
+            return
+        for url in links:
+            title = url.split("/")[-1]
+            print(title)
+            extract_content(title, query)
     else:
         print("Error in getting webpage")
         
