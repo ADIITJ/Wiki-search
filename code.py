@@ -12,6 +12,10 @@ def search_and_extract(query):
         links = ["https://en.wikipedia.org/"+div.a['href'] for div in soup.find_all('div', class_='mw-search-result-heading')][:3]
         for url in links:
             print(url)
+            extract_content(url,query)
+        if len(links)==0:
+            print('No results found! Try again')
+        
 
 # Function to extract content from a Wikipedia page and store it in a text file
 def extract_content(url, query):
