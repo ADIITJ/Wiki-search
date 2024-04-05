@@ -4,7 +4,7 @@ import wikipedia
 # Function to search Wikipedia and extract content from the top 5 results
 def search_and_extract(query):
 
-    url = f"https://en.wikipedia.org/w/index.php?search={query.replace(' ', '_')}&ns0=1"
+    url = f"https://en.wikipedia.org/w/index.php?search={query.replace(' ', '+')}&title=Special%3ASearch&ns0=1"
     response = requests.get(url)
     print(response.status_code)
     if response.status_code == 200:
@@ -15,6 +15,8 @@ def search_and_extract(query):
             extract_content(url,query)
         if len(links)==0:
             print('No results found! Try again')
+    else:
+        print("Error in getting webpage")
         
 
 # Function to extract content from a Wikipedia page and store it in a text file
