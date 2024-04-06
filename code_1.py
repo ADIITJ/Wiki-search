@@ -37,11 +37,6 @@ def extract_content(title, query):
         print("Error:", e)
 
 
-# Function to generate the final query for RAG with original query and context
-def generate_query(query, context):
-    final_query = f"{query} | {context}"
-
-    print("Final query for RAG:", final_query)
 
 def main():
     while True:
@@ -49,6 +44,7 @@ def main():
         if user_input.lower() == 'quit':
             break
         search_and_extract(user_input)
+    
 
 if __name__ == "__main__":
     main()
