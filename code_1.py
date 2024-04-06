@@ -1,5 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
+import RAG
+import os
 def search_and_extract(query):
     url = f"https://en.wikipedia.org/w/index.php?search={query.replace(' ', '+')}&title=Special:Search&profile=advanced&fulltext=1&ns0=1"
     response = requests.get(url)
@@ -36,15 +38,13 @@ def extract_content(title, query):
     except Exception as e:
         print("Error:", e)
 
-
-
 def main():
-    while True:
-        user_input = input("Enter the topic about which you want to know (type 'quit' to exit): ")
-        if user_input.lower() == 'quit':
-            break
-        search_and_extract(user_input)
-    
+    user_input = input("Enter the topic about which you want to know (type 'quit' to exit): ")
+    search_and_extract(user_input)
+    sentences_per_chunk =  int(input("How many sentences per chunk? "))
+    num_chunks = int(input("How many number of chunks? "))
+    RAG.main(['all_content.txt'], sentences_per_chunk, num_chunks)
+    os.remove("all_content.txt")
 
 if __name__ == "__main__":
     main()
