@@ -40,12 +40,12 @@ def extract_content(title, query):
 # Function to generate the final query for RAG with original query and context
 def generate_query(query, context):
     final_query = f"{query} | {context}"
-    
+
     print("Final query for RAG:", final_query)
 
 def main():
     while True:
-        user_input = input("Enter your search query (type 'quit' to exit): ")
+        user_input = input("Enter the topic about which you want to know (type 'quit' to exit): ")
         if user_input.lower() == 'quit':
             break
         search_and_extract(user_input)
