@@ -106,6 +106,7 @@ def response(query_text, num_chunks):
 
 def main(uploaded, sentences_per_chunk, num_chunks):
     get_file_contents(uploaded, sentences_per_chunk)
+    print('Enter "bye" to exit the program. Reminder, once "bye" is entered, all data acquired is deleted')
     query_text = ""
     while True:
         query_text = input("You: ")

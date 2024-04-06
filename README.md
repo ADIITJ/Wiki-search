@@ -1,6 +1,6 @@
 # Wiki-search to generate prompt with RAG
 
-Welcome to the WIKI SEARCH! This tool combines **web scraping** with natural language processing techniques to provide enhanced prompts for question answering systems.
+Welcome to the WIKI SEARCH! This tool combines **web scraping** with natural language processing technique called **RAG[Retrieval Augmented Generation]** to provide enhanced prompts for question answering systems.
 
 ## Overview
 
@@ -29,6 +29,8 @@ The project extracts pertinent information from the top three search results on 
 
 3. **Customization**: 
    - Adjust the number of sentences per chunk and the number of chunks in the `wiki.py` script to customize the prompts according to your requirements.
+4. **Creation and deletion of context**:
+   - All the context taken from wikipedia pages is deleted after the user exits the chat by saying 'bye'
 
 ## Usage
 
