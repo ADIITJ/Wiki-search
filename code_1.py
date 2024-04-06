@@ -30,21 +30,17 @@ def extract_content(title, query):
                 f.write(content)
                 f.write("\n")
             print(f"Content extracted and saved to all_content.txt")
-            extract_chunks(content, query)
         else:
             print(f"Failed to fetch Wikipedia page for '{title}'. Status code: {response.status_code}")
 
     except Exception as e:
         print("Error:", e)
 
-# Function to extract relevant chunks from the content based on query
-def extract_chunks(content, query):
-    
-    return
 
 # Function to generate the final query for RAG with original query and context
 def generate_query(query, context):
     final_query = f"{query} | {context}"
+    
     print("Final query for RAG:", final_query)
 
 def main():
